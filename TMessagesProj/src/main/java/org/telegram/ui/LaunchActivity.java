@@ -60,6 +60,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 import androidx.arch.core.util.Function;
 import androidx.core.content.pm.ShortcutInfoCompat;
 import androidx.core.content.pm.ShortcutManagerCompat;
@@ -1253,7 +1254,8 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         });
     }
 
-    private boolean handleIntent(Intent intent, boolean isNew, boolean restore, boolean fromPassword) {
+    @VisibleForTesting
+    boolean handleIntent(Intent intent, boolean isNew, boolean restore, boolean fromPassword) {
         if (AndroidUtilities.handleProxyIntent(this, intent)) {
             actionBarLayout.showLastFragment();
             if (AndroidUtilities.isTablet()) {
