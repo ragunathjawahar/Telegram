@@ -47,4 +47,9 @@ public class ConnectionsManagerTestable extends ConnectionsManager {
     public void updateDcSettings() {
         /* no-op */
     }
+
+    @Override
+    protected void nativeResumeNetwork() {
+        /* no-op */
+    }
 }
