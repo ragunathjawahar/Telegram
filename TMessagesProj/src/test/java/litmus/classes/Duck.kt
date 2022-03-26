@@ -1,4 +1,4 @@
-package litmus
+package litmus.classes
 
 interface Duck {
   fun quack(): String

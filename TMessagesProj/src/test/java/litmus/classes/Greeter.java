@@ -1,4 +1,4 @@
-package litmus;
+package litmus.classes;
 
 public class Greeter {
     public static String greet() {
