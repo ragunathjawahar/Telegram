@@ -201,7 +201,7 @@ public class ApplicationLoader extends Application {
         }
 
         NativeLoader.initNativeLibs(ApplicationLoader.applicationContext);
-        ConnectionsManager.native_setJava(false);
+        setupConnectionsManager();
         new ForegroundDetector(this) {
             @Override
             public void onActivityStarted(Activity activity) {
@@ -219,6 +219,10 @@ public class ApplicationLoader extends Application {
         applicationHandler = new Handler(applicationContext.getMainLooper());
 
         AndroidUtilities.runOnUIThread(ApplicationLoader::startPushService);
+    }
+
+    protected void setupConnectionsManager() {
+        ConnectionsManager.native_setJava(false);
     }
 
     public static void startPushService() {
