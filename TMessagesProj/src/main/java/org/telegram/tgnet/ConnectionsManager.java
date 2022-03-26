@@ -141,7 +141,10 @@ public class ConnectionsManager extends BaseController {
     private static HashMap<String, ResolvedDomain> dnsCache = new HashMap<>();
 
     private static int lastClassGuid = 1;
-    
+
+    @VisibleForTesting
+    public static boolean isUnderTest = false;
+
     private static volatile ConnectionsManager[] Instance = new ConnectionsManager[UserConfig.MAX_ACCOUNT_COUNT];
     public static ConnectionsManager getInstance(int num) {
         ConnectionsManager localInstance = Instance[num];
@@ -149,7 +152,11 @@ public class ConnectionsManager extends BaseController {
             synchronized (ConnectionsManager.class) {
                 localInstance = Instance[num];
                 if (localInstance == null) {
-                    Instance[num] = localInstance = new ConnectionsManager(num);
+                    if (!isUnderTest) {
+                        Instance[num] = localInstance = new ConnectionsManager(num);
+                    } else {
+                        Instance[num] = localInstance = new ConnectionsManagerTestable(num);
+                    }
                 }
             }
         }
