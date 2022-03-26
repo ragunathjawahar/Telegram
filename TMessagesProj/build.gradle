@@ -60,6 +60,8 @@ dependencies {
     /* PowerMock */
     testImplementation("org.powermock:powermock-module-junit4:2.0.2")
     testImplementation("org.powermock:powermock-api-mockito2:2.0.2")
+
+    testImplementation 'org.robolectric:robolectric:4.6'
 }
 
 tasks.withType(Test) {
@@ -96,6 +98,12 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
 
         coreLibraryDesugaringEnabled true
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
     }
 
     signingConfigs {
