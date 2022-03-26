@@ -720,13 +720,20 @@ public class MessagesController extends BaseController implements NotificationCe
 
     private static volatile MessagesController[] Instance = new MessagesController[UserConfig.MAX_ACCOUNT_COUNT];
 
+    @VisibleForTesting
+    public static boolean isUnderTest = false;
+
     public static MessagesController getInstance(int num) {
         MessagesController localInstance = Instance[num];
         if (localInstance == null) {
             synchronized (MessagesController.class) {
                 localInstance = Instance[num];
                 if (localInstance == null) {
-                    Instance[num] = localInstance = new MessagesController(num);
+                    if (!isUnderTest) {
+                        Instance[num] = localInstance = new MessagesController(num);
+                    } else {
+                        Instance[num] = localInstance = new MessagesControllerTestable(num);
+                    }
                 }
             }
         }
