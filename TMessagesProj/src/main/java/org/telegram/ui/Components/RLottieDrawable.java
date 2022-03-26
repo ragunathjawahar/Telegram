@@ -22,6 +22,7 @@ import android.text.TextUtils;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 
+import androidx.annotation.VisibleForTesting;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.DispatchQueuePool;
@@ -531,6 +532,9 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
         return true;
     }
 
+    @VisibleForTesting
+    public static boolean isUnderTest = false;
+
     public RLottieDrawable(int rawRes, String name, int w, int h, boolean startDecode, int[] colorReplacement) {
         width = w;
         height = h;
@@ -540,7 +544,9 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
             return;
         }
         getPaint().setFlags(Paint.FILTER_BITMAP_FLAG);
-        nativePtr = createWithJson(jsonString, name, metaData, colorReplacement);
+        if (!isUnderTest) {
+            nativePtr = createWithJson(jsonString, name, metaData, colorReplacement);
+        }
         timeBetweenFrames = Math.max(16, (int) (1000.0f / metaData[1]));
         if (startDecode) {
             setAllowDecodeSingleFrame(true);

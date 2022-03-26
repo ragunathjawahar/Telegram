@@ -11,6 +11,7 @@ import org.robolectric.annotation.Config
 import org.telegram.messenger.MessagesController
 import org.telegram.messenger.TestableApplicationLoader
 import org.telegram.tgnet.ConnectionsManager
+import org.telegram.ui.Components.RLottieDrawable
 
 @RunWith(RobolectricTestRunner::class)
 @Config(application = TestableApplicationLoader::class)
@@ -19,6 +20,7 @@ class LaunchActivityHandleIntentTest {
   fun setUp() {
     MessagesController.isUnderTest = true
     ConnectionsManager.isUnderTest = true
+    RLottieDrawable.isUnderTest = true
   }
 
   @Test
