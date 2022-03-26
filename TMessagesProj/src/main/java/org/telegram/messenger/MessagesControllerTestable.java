@@ -17,4 +17,13 @@ public class MessagesControllerTestable extends MessagesController {
     protected String getDcDomainName2() {
         return dcDomainName2;
     }
+
+    public static final int WEB_FILE_DATACENTER_ID_A = 2;
+    public static final int WEB_FILE_DATACENTER_ID_B = 4;
+    public static int webFileDatacenterId = WEB_FILE_DATACENTER_ID_A;
+
+    @Override
+    protected int webFileDatacenterId() {
+        return webFileDatacenterId;
+    }
 }
