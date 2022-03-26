@@ -11,4 +11,9 @@ public class ConnectionsManagerTestable extends ConnectionsManager {
     protected int getNativeGetConnectionState() {
         return nativeGetConnectionState;
     }
+
+    @Override
+    public int getCurrentTime() {
+        return (int) System.currentTimeMillis();
+    }
 }
