@@ -520,8 +520,13 @@ public class ConnectionsManager extends BaseController {
                 getContactsController().checkContacts();
             }
             lastPauseTime = 0;
-            native_resumeNetwork(currentAccount, false);
+            nativeResumeNetwork();
         }
+    }
+
+    @VisibleForTesting
+    protected void nativeResumeNetwork() {
+        native_resumeNetwork(currentAccount, false);
     }
 
     public static void onUnparsedMessageReceived(long address, final int currentAccount) {
