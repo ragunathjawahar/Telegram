@@ -52,4 +52,17 @@ public class ConnectionsManagerTestable extends ConnectionsManager {
     protected void nativeResumeNetwork() {
         /* no-op */
     }
+
+    @Override
+    public int sendRequest(final TLObject object,
+                           final RequestDelegate onComplete,
+                           final RequestDelegateTimestamp onCompleteTimestamp,
+                           final QuickAckDelegate onQuickAck,
+                           final WriteToSocketDelegate onWriteToSocket,
+                           final int flags,
+                           final int datacenterId,
+                           final int connetionType,
+                           final boolean immediate) {
+        return 1;
+    }
 }
