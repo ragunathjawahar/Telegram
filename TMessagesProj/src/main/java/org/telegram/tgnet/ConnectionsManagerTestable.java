@@ -42,4 +42,9 @@ public class ConnectionsManagerTestable extends ConnectionsManager {
     public void checkConnection() {
         /* no-op */
     }
+
+    @Override
+    public void updateDcSettings() {
+        /* no-op */
+    }
 }
