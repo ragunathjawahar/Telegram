@@ -186,10 +186,14 @@ public class MessagesStorage extends BaseController {
         secretG = value;
     }
 
+    public static boolean isUnderTest = false;
+
     public MessagesStorage(int instance) {
         super(instance);
         //storageQueue.setPriority(Thread.MAX_PRIORITY);
-        storageQueue.postRunnable(() -> openDatabase(1));
+        if (!isUnderTest) {
+            storageQueue.postRunnable(() -> openDatabase(1));
+        }
     }
 
     public SQLiteDatabase getDatabase() {
