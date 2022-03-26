@@ -8,6 +8,7 @@ import org.junit.runner.RunWith
 import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.telegram.messenger.Intro
 import org.telegram.messenger.MessagesController
 import org.telegram.messenger.TestableApplicationLoader
 import org.telegram.tgnet.ConnectionsManager
@@ -21,6 +22,7 @@ class LaunchActivityHandleIntentTest {
     MessagesController.isUnderTest = true
     ConnectionsManager.isUnderTest = true
     RLottieDrawable.isUnderTest = true
+    Intro.isUnderTest = true
   }
 
   @Test

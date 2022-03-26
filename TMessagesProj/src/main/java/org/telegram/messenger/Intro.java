@@ -24,8 +24,12 @@ public class Intro {
     public static native void onSurfaceCreated();
     public static native void onSurfaceChanged(int a_width_px, int a_height_px, float a_scale_factor, int a1);
 
+    public static boolean isUnderTest = false;
+
     public static void setBackgroundColor(int color) {
-        setBackgroundColor((float)Color.red(color) / 0xFF, (float)Color.green(color) / 0xFF, (float)Color.blue(color) / 0xFF, (float)Color.alpha(color) / 0xFF);
+        if (!isUnderTest) {
+            setBackgroundColor((float)Color.red(color) / 0xFF, (float)Color.green(color) / 0xFF, (float)Color.blue(color) / 0xFF, (float)Color.alpha(color) / 0xFF);
+        }
     }
 
     private static native void setBackgroundColor(float r, float g, float b, float a);
