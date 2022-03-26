@@ -116,6 +116,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
     private boolean destroyed;
 
     private boolean isOnLogout;
+    public static boolean isUnderTest = false;
 
     @Override
     public boolean onFragmentCreate() {
@@ -285,7 +286,9 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                     return;
                 }
                 float offset = (position * width + positionOffsetPixels - currentViewPagerPage * width) / width;
-                Intro.setScrollOffset(offset);
+                if (!isUnderTest) {
+                    Intro.setScrollOffset(offset);
+                }
             }
 
             @Override

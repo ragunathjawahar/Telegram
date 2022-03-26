@@ -23,6 +23,7 @@ class LaunchActivityHandleIntentTest {
     ConnectionsManager.isUnderTest = true
     RLottieDrawable.isUnderTest = true
     Intro.isUnderTest = true
+    IntroActivity.isUnderTest = true
   }
 
   @Test
