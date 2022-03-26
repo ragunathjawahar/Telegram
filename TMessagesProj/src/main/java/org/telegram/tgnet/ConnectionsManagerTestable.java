@@ -37,4 +37,9 @@ public class ConnectionsManagerTestable extends ConnectionsManager {
                               String packageId) {
         /* no-op */
     }
+
+    @Override
+    public void checkConnection() {
+        /* no-op */
+    }
 }
