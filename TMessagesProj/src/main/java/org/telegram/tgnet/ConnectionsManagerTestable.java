@@ -16,4 +16,25 @@ public class ConnectionsManagerTestable extends ConnectionsManager {
     public int getCurrentTime() {
         return (int) System.currentTimeMillis();
     }
+
+    @Override
+    protected void nativeInit(int version,
+                              int layer,
+                              int apiId,
+                              String deviceModel,
+                              String systemVersion,
+                              String appVersion,
+                              String langCode,
+                              String systemLangCode,
+                              String configPath,
+                              String logPath,
+                              String regId,
+                              String cFingerprint,
+                              int timezoneOffset,
+                              long userId,
+                              boolean enablePushConnection,
+                              String installer,
+                              String packageId) {
+        /* no-op */
+    }
 }
