@@ -892,7 +892,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         updateAppUpdateViews(false);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            FingerprintController.checkKeyReady();
+            checkKeyReady();
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
@@ -902,6 +902,11 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
                 SharedConfig.BackgroundActivityPrefs.setLastCheckedBackgroundActivity(System.currentTimeMillis());
             }
         }
+    }
+
+    @VisibleForTesting
+    protected void checkKeyReady() {
+        FingerprintController.checkKeyReady();
     }
 
     private BaseFragment getClientNotActivatedFragment() {
