@@ -10,6 +10,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.telegram.messenger.Intro
 import org.telegram.messenger.MessagesController
+import org.telegram.messenger.MessagesStorage
 import org.telegram.messenger.TestableApplicationLoader
 import org.telegram.tgnet.ConnectionsManager
 import org.telegram.ui.Components.RLottieDrawable
@@ -24,6 +25,7 @@ class LaunchActivityHandleIntentTest {
     RLottieDrawable.isUnderTest = true
     Intro.isUnderTest = true
     IntroActivity.isUnderTest = true
+    MessagesStorage.isUnderTest = true
   }
 
   @Test
