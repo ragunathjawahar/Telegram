@@ -1,3 +1,5 @@
+package litmus;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
@@ -17,10 +19,10 @@ public class RobolectricJUnit4Test {
         TestableApplicationLoader application = (TestableApplicationLoader) RuntimeEnvironment.getApplication();
 
         // when
-        String usernameString = application.getString(R.string.UsernamePlaceholder);
+        String usernamePlaceholder = application.getString(R.string.UsernamePlaceholder);
 
         // then
-        assertThat(usernameString)
+        assertThat(usernamePlaceholder)
                 .isEqualTo("Your Username");
     }
 }

@@ -1,3 +1,5 @@
+package litmus;
+
 import litmus.classes.Greeter;
 import org.junit.Test;
 import org.junit.runner.RunWith;

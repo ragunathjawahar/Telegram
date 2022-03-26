@@ -1,3 +1,5 @@
+package litmus;
+
 import litmus.classes.Duck;
 import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
