@@ -833,7 +833,7 @@ public class MessagesController extends BaseController implements NotificationCe
         imageSearchBot = mainPreferences.getString("imageSearchBot", "pic");
         blockedCountry = mainPreferences.getBoolean("blockedCountry", false);
         dcDomainName = mainPreferences.getString("dcDomainName2", getDcDomainName2());
-        webFileDatacenterId = mainPreferences.getInt("webFileDatacenterId", ConnectionsManager.native_isTestBackend(currentAccount) != 0 ? 2 : 4);
+        webFileDatacenterId = mainPreferences.getInt("webFileDatacenterId", webFileDatacenterId());
         suggestedLangCode = mainPreferences.getString("suggestedLangCode", "en");
         animatedEmojisZoom = mainPreferences.getFloat("animatedEmojisZoom", 0.625f);
         qrLoginCamera = mainPreferences.getBoolean("qrLoginCamera", false);
@@ -975,6 +975,11 @@ public class MessagesController extends BaseController implements NotificationCe
     @VisibleForTesting
     protected String getDcDomainName2() {
         return ConnectionsManager.native_isTestBackend(currentAccount) != 0 ? "tapv3.stel.com" : "apv3.stel.com";
+    }
+
+    @VisibleForTesting
+    protected int webFileDatacenterId() {
+        return ConnectionsManager.native_isTestBackend(currentAccount) != 0 ? 2 : 4;
     }
 
     private void sendLoadPeersRequest(TLObject req, ArrayList<TLObject> requests, TLRPC.messages_Dialogs pinnedDialogs, TLRPC.messages_Dialogs pinnedRemoteDialogs, ArrayList<TLRPC.User> users, ArrayList<TLRPC.Chat> chats, ArrayList<DialogFilter> filtersToSave, SparseArray<DialogFilter> filtersToDelete, ArrayList<Integer> filtersOrder, HashMap<Integer, HashSet<Long>> filterDialogRemovals, HashMap<Integer, HashSet<Long>> filterUserRemovals, HashSet<Integer> filtersUnreadCounterReset) {
