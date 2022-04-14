@@ -265,7 +265,7 @@ public class MessagesStorage extends BaseController {
         }
         try {
             database = new SQLiteDatabase(cacheFile.getPath());
-            executeSqlStatements(createTable);
+            executeSqlStatements(createTable, database);
         } catch (Exception e) {
             FileLog.e(e);
             if (BuildVars.DEBUG_PRIVATE_VERSION) {
@@ -308,7 +308,7 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    private void executeSqlStatements(boolean createTable) throws Exception {
+    private void executeSqlStatements(boolean createTable, SQLiteDatabase database) throws Exception {
         database.executeFast("PRAGMA secure_delete = ON").stepThis().dispose();
         database.executeFast("PRAGMA temp_store = MEMORY").stepThis().dispose();
         database.executeFast("PRAGMA journal_mode = WAL").stepThis().dispose();
