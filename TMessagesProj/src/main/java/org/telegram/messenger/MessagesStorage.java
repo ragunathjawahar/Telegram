@@ -315,7 +315,7 @@ public class MessagesStorage extends BaseController {
         database.executeFast("PRAGMA journal_size_limit = 10485760").stepThis().dispose();
 
         if (createTable) {
-            createTable(database);
+            createTable(database, BuildVars.LOGS_ENABLED);
         } else {
             int version = database.executeInt("PRAGMA user_version");
             if (BuildVars.LOGS_ENABLED) {
@@ -369,8 +369,8 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    private void createTable(SQLiteDatabase database) throws SQLiteException {
-        if (BuildVars.LOGS_ENABLED) {
+    private void createTable(SQLiteDatabase database, boolean logsEnabled) throws SQLiteException {
+        if (logsEnabled) {
             FileLog.d("create new database");
         }
         database.executeFast("CREATE TABLE messages_holes(uid INTEGER, start INTEGER, end INTEGER, PRIMARY KEY(uid, start));").stepThis().dispose();
