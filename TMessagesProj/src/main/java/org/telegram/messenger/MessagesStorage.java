@@ -315,7 +315,7 @@ public class MessagesStorage extends BaseController {
         database.executeFast("PRAGMA journal_size_limit = 10485760").stepThis().dispose();
 
         if (createTable) {
-            createTable(database, BuildVars.LOGS_ENABLED);
+            createTable(database, BuildVars.LOGS_ENABLED, LAST_DB_VERSION);
         } else {
             int version = database.executeInt("PRAGMA user_version");
             if (BuildVars.LOGS_ENABLED) {
@@ -369,7 +369,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    private void createTable(SQLiteDatabase database, boolean logsEnabled) throws SQLiteException {
+    private void createTable(SQLiteDatabase database, boolean logsEnabled, int lastDbVersion) throws SQLiteException {
         if (logsEnabled) {
             FileLog.d("create new database");
         }
@@ -494,7 +494,7 @@ public class MessagesStorage extends BaseController {
 
         database.executeFast("CREATE TABLE downloading_documents(data BLOB, hash INTEGER, id INTEGER, state INTEGER, date INTEGER, PRIMARY KEY(hash, id));").stepThis().dispose();
         //version
-        database.executeFast("PRAGMA user_version = " + LAST_DB_VERSION).stepThis().dispose();
+        database.executeFast("PRAGMA user_version = " + lastDbVersion).stepThis().dispose();
     }
 
     public boolean isDatabaseMigrationInProgress() {
