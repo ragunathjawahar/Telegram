@@ -372,7 +372,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    private void fwdCreateTable(SQLiteDatabase database, int lastDbVersion) throws SQLiteException {
+    void fwdCreateTable(SQLiteDatabase database, int lastDbVersion) throws SQLiteException {
         database.executeFast("CREATE TABLE messages_holes(uid INTEGER, start INTEGER, end INTEGER, PRIMARY KEY(uid, start));").stepThis().dispose();
         database.executeFast("CREATE INDEX IF NOT EXISTS uid_end_messages_holes ON messages_holes(uid, end);").stepThis().dispose();
 
